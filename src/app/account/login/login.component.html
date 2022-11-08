@@ -1,0 +1,53 @@
+<section class="h-100 ima">
+	<div class="container-fluid h-100">
+		<div class="row justify-content-sm-center h-100">
+			<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+				<div class="card mt-5 shadow-lg">
+					<div class="card-body p-5">
+						<div class="text-center">
+							<h1 class="text-center display-6 fw-bold"> Login</h1>
+							<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="d-flex-center">
+								<div class="example-container">
+									<div>
+										<mat-form-field>
+											<input matInput placeholder="User name" formControlName="username">
+											<mat-error *ngIf="!loginForm.get('username')?.errors?.['required'] ">
+												Please enter a valid user name
+											</mat-error>
+											<mat-error
+												*ngIf="loginForm.get('username')?.invalid && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched) && loginForm.get('username')?.errors?.['required']">
+												User name is required
+											</mat-error>
+										</mat-form-field>
+									</div>
+									<div class="mt-top-2">
+										<mat-form-field>
+											<input matInput type="password" placeholder="Password"
+												formControlName="password">
+											<mat-error *ngIf="!loginForm.get('password')?.errors?.['required']">
+												Password length must be greater than or equal to 8 characters
+											</mat-error>
+											<mat-error
+												*ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched) && loginForm.get('password')?.errors?.['required']">
+												Password is required
+											</mat-error>
+										</mat-form-field>
+									</div>
+									<div class="mt-top mt-3 d-flex justify-content-between">
+										<button [disabled]="!loginForm.valid" mat-raised-button color="primary"
+											class="px-4" mat-button class="h6">Sign In</button>
+										<a class="h6 mt-1">Forget Password</a>
+									</div>
+									<!-- <div>
+										<p class="h6 mt-5 float-start">Don't have an account? <a href="#!"
+												class="link-danger">Register</a></p>
+									</div> -->
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

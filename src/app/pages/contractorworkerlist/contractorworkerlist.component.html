@@ -1,0 +1,64 @@
+<div class="container-fluid mt-2">
+<div class="row d-flex justify-content-between">
+            <div class="col-xl-6">
+                <div class="my-3 ms-2 mb-4">
+                    <h3 class="fw-bold">Contractor Worker List</h3>
+                </div>
+            </div>
+            <div class="col-xl-6 ">
+                <div class="text-end my-2 mb-4">
+                    <div><button type="button" class="btn btn-success btn-sm mb-2 me-3 "
+                            routerLink='/sidenav/ContractorWorkerForm'>
+                            <i class="mdi mdi-plus mr-1"></i> Add Contractor Worker
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-2">
+                <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="card-body table-responsive">
+                    <table id="emplist" class="table table-bordered" style="width:100%">
+                            <tr>
+                                <th>S.No</th>
+                                <th>Name</th>
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                    <tbody>
+                        <tr *ngFor="let list of contractorworkerlist ;let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{list['name']}}</td>
+                            <td>{{list['phoneNumber']}}</td>
+                            <td>{{list['email']}}</td>
+                            <td>{{list['status']}}</td>
+                            <td><button class="btn btn=success">Edit</button><button class="btn btn=danger">Delete</button></td>
+
+
+                        </tr>
+                    </tbody>
+                       
+                            <!-- <tbody id="tbody"> -->
+                                <!-- <tr *ngFor="let worker of workers">
+                                <td>{{worker.id}}</td>
+                                <td>{{worker.name}}</td>
+                                <td>{{worker.email}}</td>
+                                <td>{{worker.phoneNo1}}</td>
+                                <td>{{worker.phoneNo2}}</td>
+                                <td>{{worker.pinCode}}</td>
+                                <td>{{worker.addressLine1}}</td>
+                                <td>{{worker.addressLine2}}</td>
+                                <td>{{worker.cityId}}</td>
+                                <td>{{worker.stateId}}</td>
+                                <td>{{worker.countryId}}</td>
+                               <td><button class="btn btn-primary" routerLink="">Edit</button><button class="btn btn-danger ms-1">Delete</button></td>
+                            </tbody> -->
+                      
+                    </table>
+                </div>
+            </div>
+        </div>
+     </div> 
+</div>

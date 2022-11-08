@@ -1,0 +1,158 @@
+<div class="container mt-2">
+    <div class="row d-flex justify-content-between">
+        <div class="col-xl-6">
+            <div class="mt-3 mb-3">
+                <h2 class="fw-bold">Site Creation</h2>
+            </div>
+        </div>
+        <div class="col-xl-6 ">
+            <div class="text-end mb-3 mt-3">
+                <div><button type="button" class="btn-blue" routerLink='/dashboard/SiteCreationList'>
+                        <i class="mdi mdi-plus mr-1"></i> Site Creation List
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <form class="form-horizontal" (ngSubmit)="getSiteCreation()" [formGroup]="sitecreationForm">
+            <div class="row mb-4">
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <input type="text" formControlName="siteName" placeholder="Site name" class="form-control"
+                            [(ngModel)]="siteObj.siteName"
+                            [ngClass]="{ 'is-invalid': submitted && f['siteName'].errors || f['siteName'].touched && f['siteName'].errors }" />
+                        <div *ngIf="submitted && f['siteName'].errors || f['siteName'].touched && f['siteName'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f['siteName'].errors['required']">Site name is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <input type="text" formControlName="sitePlace" placeholder="Site place" class="form-control"
+                            [(ngModel)]="siteObj.sitePlace"
+                            [ngClass]="{ 'is-invalid': submitted && f['sitePlace'].errors || f['sitePlace'].touched && f['sitePlace'].errors }" />
+                        <div *ngIf="submitted && f['sitePlace'].errors || f['sitePlace'].touched && f['sitePlace'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f['sitePlace'].errors['required']">Site place is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <ng-select [items]="OwnerNameList" name="ownerName" bindLabel="ownerName" bindValue="id"
+                            placeholder="Owner name *" formControlName="ownerId" (change)="getOwnerDetail($event)"
+                           [(ngModel)]="siteObj.ownerId"
+                            [ngClass]="{ 'is-invalid': submitted && f['ownerId'].errors || f['ownerId'].touched && f['ownerId'].errors }">
+                        </ng-select>
+                        <div *ngIf="submitted && f['ownerId'].errors || f['ownerId'].touched && f['ownerId'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f['ownerId'].errors['required']">Select Owner name</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <input type="text" formControlName="ownerPhoneNumber" placeholder="Owner phone number *"
+                            class="form-control" [(ngModel)]="OwnerObj.phoneNo" readonly
+                            [(ngModel)]="siteObj.ownerPhoneNumber"
+                            [ngClass]="{ 'is-invalid': submitted && f['ownerPhoneNumber'].errors || f['ownerPhoneNumber'].touched && f['ownerPhoneNumber'].errors }" />
+                        <div *ngIf="submitted && f['ownerPhoneNumber'].errors || f['ownerPhoneNumber'].touched && f['ownerPhoneNumber'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f['ownerPhoneNumber'].errors['required']">Phone number is required</div>
+                            <div *ngIf="f['ownerPhoneNumber'].errors['pattern']">Phone number must contain 10 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <input type="text" formControlName="ownerAddress" placeholder="Owner address *"
+                            class="form-control" readonly [(ngModel)]="addressObj" [(ngModel)]="siteObj.ownerAddress"
+                            [ngClass]="{ 'is-invalid': submitted && f['ownerAddress'].errors || f['ownerAddress'].touched && f['ownerAddress'].errors }" />
+                        <div *ngIf="submitted && f['ownerAddress'].errors || f['ownerAddress'].touched && f['ownerAddress'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f['ownerAddress'].errors['required']">Owner address is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <input type="text" formControlName="ownerEmail" placeholder="Owner email *" class="form-control"
+                            [(ngModel)]="OwnerObj.email" readonly [(ngModel)]="siteObj.ownerEmail"
+                            [ngClass]="{ 'is-invalid': submitted && f['ownerEmail'].errors || f['ownerEmail'].touched && f['ownerEmail'].errors }" />
+                        <div *ngIf="submitted && f['ownerEmail'].errors || f['ownerEmail'].touched && f['ownerEmail'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f['ownerEmail'].errors['required']">Owner email is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <ng-select [items]="ProjectManagerList" bindLabel="name" bindValue="id"
+                            formControlName="projectManagerId" placeholder="Project manager *" [(ngModel)]="siteObj.projectManagerId"
+                            [ngClass]="{ 'is-invalid': submitted && f['projectManagerId'].errors || f['projectManagerId'].touched && f['projectManagerId'].errors }">
+                        </ng-select>
+                        <div *ngIf="submitted && f['projectManagerId'].errors || f['projectManagerId'].touched && f['projectManagerId'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f['projectManagerId'].errors['required']">Select project manager</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <ng-select [items]="SiteEngineerList" bindLabel="name" bindValue="id"
+                            formControlName="siteEngineerId" placeholder="Site engineer *"
+                            [(ngModel)]="siteObj.siteEngineerId"
+                            [ngClass]="{ 'is-invalid': submitted && f['siteEngineerId'].errors || f['siteEngineerId'].touched && f['siteEngineerId'].errors }">
+                        </ng-select>
+                        <div *ngIf="submitted && f['siteEngineerId'].errors || f['siteEngineerId'].touched && f['siteEngineerId'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f['siteEngineerId'].errors['required']">Select site engineer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <input type="text" formControlName="description" placeholder="Description *" class="form-control"
+                            [(ngModel)]="siteObj.description"
+                            [ngClass]="{ 'is-invalid': submitted && f['description'].errors || f['description'].touched && f['description'].errors }" />
+                        <div *ngIf="submitted && f['description'].errors || f['description'].touched && f['description'].errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f['description'].errors['required']">Description is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-6">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" placeholder="Account Number" id="accountNumber"
+                            formControlName="id" required [(ngModel)]="siteObj.id"
+                            [ngClass]="{ 'is-invalid': submitted && f['id'].errors || f['id'].touched && f['id'].errors }">
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end gap-4">
+                <button type="reset" class="btn btn-danger mb-3 float-end px-4">Cancel</button>
+                <button type="submit" class="btn-blue mb-3 float-end px-4">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

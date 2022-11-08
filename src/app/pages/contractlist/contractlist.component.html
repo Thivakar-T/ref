@@ -1,0 +1,53 @@
+<div class="container-fluid mt-2">
+    <div class="row d-flex justify-content-between">
+        <div class="col-xl-6">
+            <div class="my-3 ms-2 ">
+                <h3 class="fw-bold">Contract list</h3>
+            </div>
+        </div>
+        <div class="col-xl-6 ">
+            <div class="text-end my-2 ">
+                <div><button type="button" class="btn btn-success btn-sm mb-2 me-3 "
+                        routerLink='/dashboard/contract'>
+                        <i class="mdi mdi-plus mr-1"></i> Add Contract
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="card shadow-lg p-3  bg-white rounded">
+                <div class="table-responsive">
+                    <table id="contractlist" class="table table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let list of contractlist ;let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{list['name']}}</td>
+                                <td>{{list['email']}}</td>
+                                <td>{{list['phoneNo1']}}</td>
+                                <td>{{list['status']}}</td> 
+                                <td>
+                                    <mat-icon routerLink="/dashboard/contract/edit/{{list['id']}}"
+                                        class="text-primary">edit</mat-icon>
+                                    <mat-icon (click)="delete(list['id'])" class="text-danger">delete</mat-icon>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

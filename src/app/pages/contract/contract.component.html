@@ -1,0 +1,155 @@
+<div class="container px-2 py-5 ">
+    <div class="row ">
+        <div class="bg-soft-primary">
+            <div class="row">
+                <div class="col-10 align-self-center">
+                    <div class="">
+                        <h2 class="text-dark">Contract </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="card shadow"> -->
+    <div class="card-body">
+        <div class="pb-3">
+            <form class="form-horizontal" (ngSubmit)="onSubmit()" [formGroup]="contractForm">
+                <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
+                <div class="row">
+                    <div class="col-md-4  col-12">
+                        <div class="form-group">
+                            <!-- <label>Name</label> -->
+                            <input type="text" formControlName="name" [(ngModel)]="contractObject.name" placeholder="Name" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f['name'].errors || f['name'].touched && f['name'].errors }" />
+                            <div *ngIf="submitted && f['name'].errors || f['name'].touched && f['name'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['name'].errors['required']">Name is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3 col-12">
+                        <div class="form-group">
+                            <!-- <label>Email</label> -->
+                            <input type="text" formControlName="email" [(ngModel)]="contractObject.email" placeholder="Email" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f['email'].errors || f['email'].touched && f['email'].errors }" />
+                            <div *ngIf="submitted && f['email'].errors || f['email'].touched && f['email'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-2 col-12">
+                        <div class="form-group">
+                            <!-- <label>Phone Number1</label> -->
+                            <input type="number" formControlName="phoneNo1" [(ngModel)]="contractObject.phoneNo1"
+                                placeholder="Phone Number1" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f['phoneNo1'].errors || f['phoneNo1'].touched && f['phoneNo1'].errors }" />
+                            <div *ngIf="submitted && f['phoneNo1'].errors || f['phoneNo1'].touched && f['phoneNo1'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['phoneNo1'].errors['required']">Phone Number1 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-2 col-12">
+                        <div class="form-group">
+                            <!-- <label>Phone Number2</label> -->
+                            <input type="number" formControlName="phoneNo2" [(ngModel)]="contractObject.phoneNo2"
+                                placeholder="Phone Number2" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f['phoneNo2'].errors || f['phoneNo2'].touched && f['phoneNo2'].errors }" />
+                            <div *ngIf="submitted && f['phoneNo2'].errors || f['phoneNo2'].touched && f['phoneNo2'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['phoneNo2'].errors['required']">Phone Number2 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-2 col-12">
+                        <div class="form-group">
+                            <!-- <label>Address1</label> -->
+                            <textarea type="text" formControlName="addressLine1"
+                                [(ngModel)]="contractObject.addressLine1" placeholder="Address1" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f['addressLine1'].errors || f['addressLine1'].touched && f['addressLine1'].errors }"></textarea>
+                            <div *ngIf="submitted && f['addressLine1'].errors || f['addressLine1'].touched && f['addressLine1'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['addressLine1'].errors['required']">Address1 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4  mt-2 col-12">
+                        <div class="form-group">
+                            <!-- <label>Address2</label> -->
+                            <textarea type="text" formControlName="addressLine2"
+                                [(ngModel)]="contractObject.addressLine2" placeholder="Address2" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f['addressLine2'].errors || f['addressLine2'].touched && f['addressLine2'].errors }"></textarea>
+                            <div *ngIf="submitted && f['addressLine2'].errors || f['addressLine2'].touched && f['addressLine2'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['addressLine2'].errors['required']">Address2 is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4  mt-4 col-12">
+
+                        <div class="form-group">
+                            <!-- <label>Country </label> -->
+                            <ng-select [items]=countryArr bindLabel="countryName" bindValue="id"
+                                (change)="getState($event.id)" placeholder="Country" formControlName="countryId"
+                                [(ngModel)]="contractObject.countryId"
+                                [ngClass]="{ 'is-invalid': submitted && f['countryId'].errors || f['countryId'].touched && f['countryId'].errors }">
+                            </ng-select>
+                            <div *ngIf="submitted && f['countryId'].errors || f['countryId'].touched && f['countryId'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['countryId'].errors['required']">Country is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4 col-12">
+
+                        <div class="form-group">
+                            <!-- <label>State </label> -->
+                            <ng-select [items]=stateArr id="productname" bindLabel="name" bindValue="id"
+                                (change)="getCity($event.id)" [(ngModel)]="contractObject.stateId" placeholder="State"
+                                formControlName="stateId"
+                                [ngClass]="{ 'is-invalid': submitted && f['stateId'].errors || f['stateId'].touched && f['stateId'].errors }">
+                            </ng-select>
+                            <div *ngIf="submitted && f['stateId'].errors || f['stateId'].touched && f['stateId'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['stateId'].errors['required']">State is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4  mt-4 col-12">
+
+                        <div class="form-group">
+                            <!-- <label>City </label> -->
+                            <ng-select [items]=cityArr id="productname" bindLabel="name" bindValue="id"
+                                [(ngModel)]="contractObject.cityId" placeholder="City" formControlName="cityId"
+                                [ngClass]="{ 'is-invalid': submitted && f['cityId'].errors || f['cityId'].touched && f['cityId'].errors }">
+                            </ng-select>
+                            <div *ngIf="submitted && f['cityId'].errors || f['cityId'].touched && f['cityId'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['cityId'].errors['required']">City is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mt-4 col-12">
+                        <div class="form-group">
+                            <!-- <label>Pincode</label> -->
+                            <input type="number" formControlName="pinCode" [(ngModel)]="contractObject.pinCode"
+                                placeholder="Pincode" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f['pinCode'].errors || f['pinCode'].touched && f['pinCode'].errors }" />
+                            <div *ngIf="submitted && f['pinCode'].errors || f['pinCode'].touched && f['pinCode'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['pinCode'].errors['required']">Pincode is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end gap-4">
+                        <button type="submit" class="btn btn-primary mb-3 float-end px-4">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

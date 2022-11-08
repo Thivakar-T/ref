@@ -1,0 +1,54 @@
+
+<div>
+  <nav class="navbar navbar-expand-lg mat-elevation-z5">
+    <div class="container">
+      <img src="/assets/ebrain logo (2).png" alt="Ebrain Logo" class="image">
+      <button mat-button class="navbar-toggler " type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <mat-icon class="navbar-toggler-icon text-white">menu</mat-icon>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <span class="example-spacer"></span>
+
+
+        <ul class="navbar-nav" *ngFor="let item of menuItems">
+          <li class="nav-item ">
+            <a class="nav-link text-white cursor " *ngIf="!item.subItems" [routerLink]="item.link">{{item.label}}
+            </a>
+          <!-- </li>
+          <li class="nav-item" > -->
+            <a mat-button class="nav-link text-white" *ngIf="item.subItems" [matMenuTriggerFor]="construction">{{item.label2}}
+              <mat-menu #construction="matMenu" >
+                  <span *ngFor="let itemsub of item.subItems" >
+                    <button mat-menu-item [routerLink]="itemsub.link"> {{itemsub.label2}}</button>
+                  </span>
+              </mat-menu>
+            </a>
+          </li>
+        </ul>
+
+
+        <button mat-icon-button class="example-icon text-white loginName ms-3">{{name}} </button>
+
+        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+          <mat-icon class="text-white img" [matMenuTriggerFor]="person">person</mat-icon>
+        </button>
+
+        <mat-menu #person="matMenu">
+          <button mat-menu-item>Edit Profile</button>
+          <button mat-menu-item routerLink="">Logout</button>
+        </mat-menu>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <app-footer class="footer"></app-footer>
+</div>

@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import '~ngx-toastr/toastr';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+ .form-control.ng-touched.ng-invalid{
+    border: 1px solid red;
+ }
+
+ .form-control.ng-touched.ng-valid{
+    border: 1px solid green;
+ }
+
+ .ng-select.ng-select-opened.ng-select-bottom>.ng-select-container {
+   z-index: 3!important;
+ }
+ .btn-blue{
+   background-color: #124597;
+  border: none;
+  padding: 8px 10px;
+  color:white;
+  border-radius: 5px;
+  font-size: 16px;
+ }
+ .main-content {
+   overflow: unset !important;
+ }
+//  .page-content{
+//    height: 100vh;
+//  }

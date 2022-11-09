@@ -18,7 +18,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     if (isLoggedIn && isApiUrl) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Construction ${token}`,
+          Authorization: `Officy ${token}`,
         }
       });
     }

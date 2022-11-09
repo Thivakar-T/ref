@@ -14,10 +14,13 @@ import {MatMenuModule} from '@angular/material/menu';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TokenInterceptorService } from './../services/token-interceptor.service';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { AddrowComponent } from './addrow/addrow.component';
 
 @NgModule({
   declarations: [
 
+  
+    AddrowComponent
   ],
   imports: [
     CommonModule,

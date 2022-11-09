@@ -8,8 +8,8 @@ export const MENU: MenuItem[] = [
     },
     {
         id: 2,
-        label: 'Project Manager',
-        link: '/dashboard/managerList',
+        label: 'Addrow',
+        link: '/dashboard/addrow',
     },
     {
         id: 3,
